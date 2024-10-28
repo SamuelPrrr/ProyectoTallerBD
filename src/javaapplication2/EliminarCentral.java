@@ -121,7 +121,7 @@ public class EliminarCentral extends JFrame {
                  btnEstados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EliminarEstados eliminarEstadosFrame = new EliminarEstados();
+                EliminarEstados1 eliminarEstadosFrame = new EliminarEstados1();
                 eliminarEstadosFrame.setVisible(true);
                 dispose();
             }

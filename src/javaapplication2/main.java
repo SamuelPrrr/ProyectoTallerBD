@@ -74,6 +74,7 @@ public class main extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        Consulta1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,7 +85,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        Consulta.setText("Consultar");
+        Consulta.setText("Consulta Especializada");
         Consulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ConsultaActionPerformed(evt);
@@ -146,6 +147,13 @@ public class main extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel7.setText("-Carlos Emiliano Salgado Plata");
 
+        Consulta1.setText("Consultar");
+        Consulta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Consulta1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout fondoLayout = new javax.swing.GroupLayout(fondo);
         fondo.setLayout(fondoLayout);
         fondoLayout.setHorizontalGroup(
@@ -160,13 +168,18 @@ public class main extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(fondoLayout.createSequentialGroup()
-                        .addGap(165, 165, 165)
+                        .addGap(164, 164, 164)
                         .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
+                            .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(fondoLayout.createSequentialGroup()
+                                    .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(1, 1, 1)))
                             .addComponent(Consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Consulta1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(94, 94, 94))))
@@ -215,18 +228,20 @@ public class main extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addGap(35, 35, 35)
                                 .addComponent(Insertar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(12, 12, 12)
+                                .addComponent(Consulta1)
+                                .addGap(18, 18, 18)
                                 .addComponent(Consulta)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(Update)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Eliminar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2))
+                                .addGap(12, 12, 12)
+                                .addComponent(Eliminar))
                             .addGroup(fondoLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(45, 45, 45))))
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel2)
+                        .addGap(17, 17, 17))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -260,16 +275,20 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_InsertarActionPerformed
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
-        MODIFICAR nuevoFrame = new MODIFICAR();
-        nuevoFrame.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_UpdateActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        /*ELIMINAR nuevoFrame = new ELIMINAR();
+        EliminarCentral nuevoFrame = new EliminarCentral();
         nuevoFrame.setVisible(true);
-        this.dispose();*/
+        this.dispose();
     }//GEN-LAST:event_EliminarActionPerformed
+
+    private void Consulta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Consulta1ActionPerformed
+        ConsultasGenerales nuevoFrame = new ConsultasGenerales();
+        nuevoFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_Consulta1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,6 +328,7 @@ public class main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Conectar;
     private javax.swing.JButton Consulta;
+    private javax.swing.JButton Consulta1;
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Insertar;
     private javax.swing.JButton Update;

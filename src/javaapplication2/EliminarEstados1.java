@@ -57,9 +57,9 @@ public class EliminarEstados1 extends JFrame {
     // Método para conectar a la base de datos
     private void conectarBaseDatos() {
         try {
-            String url = "jdbc:mysql://localhost:3306/hospitales?useSSL=false&serverTimezone=America/Mexico_City";
-            String user = "root";
-            String password = "odimaryserazo29";
+            String url = "jdbc:mysql://localhost:3306/Hospitales?useSSL=false&serverTimezone=America/Mexico_City";
+            String user = "samuel";
+            String password = "password";
             conn = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,15 +79,9 @@ public class EliminarEstados1 extends JFrame {
 
             // Llenar la tabla con los datos de la base
             while (rs.next()) {
-                String idFactura = rs.getString("idFactura");
-                Date fecha = rs.getDate("fecha");
-                Time hora = rs.getTime("hora");
-                String idHosp = rs.getString("idHosp");
-                String idPaciente = rs.getString("idPaciente");
-                double subtotal = rs.getDouble("subtotal");
-                double iva = rs.getDouble("iva");
-                double total = rs.getDouble("total");
-                tableModel.addRow(new Object[]{idFactura, fecha, hora, idHosp, idPaciente, subtotal, iva, total});
+                String idEstado = rs.getString("idEstado");
+                String nombre = rs.getString("nombre");
+                tableModel.addRow(new Object[]{idEstado, nombre});
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,7 +94,7 @@ public class EliminarEstados1 extends JFrame {
         if (filaSeleccionada != -1) {
             String idFactura = tableModel.getValueAt(filaSeleccionada, 0).toString();
             try {
-                String query = "DELETE FROM estados WHERE idFactura=?";
+                String query = "DELETE FROM estados WHERE idEstado=?";
                 PreparedStatement pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, idFactura);
 

@@ -57,7 +57,7 @@ public class EliminarConceptos extends JFrame {
     // Método para conectar a la base de datos
     private void conectarBaseDatos() {
         try {
-            String url = "jdbc:mysql://localhost:3306/hospitales?useSSL=false&serverTimezone=America/Mexico_City";
+            String url = "jdbc:mysql://localhost:3306/Hospitales?useSSL=false&serverTimezone=America/Mexico_City";
             String user = "samuel";
             String password = "password";
             conn = DriverManager.getConnection(url, user, password);
