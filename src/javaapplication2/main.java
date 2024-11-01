@@ -275,7 +275,9 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_InsertarActionPerformed
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
-        
+        MODIFICAR nuevoFrame = new MODIFICAR();
+        nuevoFrame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_UpdateActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed

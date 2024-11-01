@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package javaapplication2;
+
 import java.awt.Color;
 import java.sql.DriverManager;
 import java.sql.Connection;
@@ -15,32 +16,31 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JComboBox;
 
-
 /**
  *
  * @author samuel
  */
 public class POSTFACTDETALLE extends javax.swing.JFrame {
+
     private static Connection con;
     private static final String driver = "com.mysql.cj.jdbc.Driver";
     private static final String user = "samuel";
     private static final String password = "password";
     private static final String url = "jdbc:mysql://127.0.0.1/Hospitales";
-    
-    
-    public void conector(){
-    con = null;
-    try{
-        Class.forName(driver);
-        con = (Connection) DriverManager.getConnection(url, user, password);
-        if(con!=null){
-            
+
+    public void conector() {
+        con = null;
+        try {
+            Class.forName(driver);
+            con = (Connection) DriverManager.getConnection(url, user, password);
+            if (con != null) {
+
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Hubo un error en la Base de datos");
         }
     }
-    catch(ClassNotFoundException | SQLException e){
-        JOptionPane.showMessageDialog(null, "Hubo un error en la Base de datos");
-    }
-    }
+
     /**
      * Creates new form INSERTAR
      */
@@ -50,13 +50,12 @@ public class POSTFACTDETALLE extends javax.swing.JFrame {
         fondo.add(fondoImg).repaint();
         fondo.setOpaque(false);
         fondo.setBorder(null);
-        fondo.setBackground(new Color(0,0,0,0));
+        fondo.setBackground(new Color(0, 0, 0, 0));
         //Llenar los combo box
         llenarComboBox("facturas", "idFactura", comboBoxFacturas);
         llenarComboBox("conceptos", "nombre", comboBoxConceptos);
         llenarComboBox("doctores", "nombre", comboBoxDoctores);
-      }
-    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -223,36 +222,36 @@ public class POSTFACTDETALLE extends javax.swing.JFrame {
     }//GEN-LAST:event_VolverActionPerformed
 
     public class ComboItem {
-    private String key;
-    private String value;
 
-    public ComboItem(String key, String value) {
-        this.key = key;
-        this.value = value;
-    }
+        private String key;
+        private String value;
 
-    @Override
-    public String toString() {
-        return value;
-    }
-
-    public String getKey() {
-        return key;
-    }
-}
-
-private void llenarComboBox(String tabla, String valor, JComboBox combo) {
-    conector(); // Llamar al método de conexión
-    String sql = "SELECT * FROM " + tabla; // Nota el espacio después de FROM
-    try (Statement st = con.createStatement(); 
-         ResultSet rs = st.executeQuery(sql)) { // Crear Statement y ejecutar la consulta
-        while(rs.next()) {
-            combo.addItem(rs.getString(valor)); // Usar el ResultSet para obtener el valor
+        public ComboItem(String key, String value) {
+            this.key = key;
+            this.value = value;
         }
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+
+        @Override
+        public String toString() {
+            return value;
+        }
+
+        public String getKey() {
+            return key;
+        }
     }
-}
+
+    private void llenarComboBox(String tabla, String valor, JComboBox combo) {
+        conector(); // Llamar al método de conexión
+        String sql = "SELECT * FROM " + tabla; // Nota el espacio después de FROM
+        try (Statement st = con.createStatement(); ResultSet rs = st.executeQuery(sql)) { // Crear Statement y ejecutar la consulta
+            while (rs.next()) {
+                combo.addItem(rs.getString(valor)); // Usar el ResultSet para obtener el valor
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
 
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
@@ -261,32 +260,32 @@ private void llenarComboBox(String tabla, String valor, JComboBox combo) {
         String concepto = comboBoxConceptos.getSelectedItem().toString(); // Obtener el estado seleccionado
         String sqlBusqueda = "SELECT idConcepto FROM conceptos WHERE nombre = ?"; // Usar un placeholder en la consulta
         try (PreparedStatement ps = con.prepareStatement(sqlBusqueda)) {
-        ps.setString(1, concepto); // Establecer el valor del estado en la consulta
-        try (ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                ConceptoID = rs.getString("idConcepto"); // Obtener el idEstado si existe un resultado
-            } else {
-                System.out.println("No se encontró un concepto para la ciudad seleccionada."); // Mensaje si no hay coincidencia
+            ps.setString(1, concepto); // Establecer el valor del estado en la consulta
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    ConceptoID = rs.getString("idConcepto"); // Obtener el idEstado si existe un resultado
+                } else {
+                    System.out.println("No se encontró un concepto para la ciudad seleccionada."); // Mensaje si no hay coincidencia
+                }
             }
-        }
         } catch (SQLException e) {
-         JOptionPane.showMessageDialog(null, "Error recuperando el concepto: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error recuperando el concepto: " + e.getMessage());
         }
-        
+
         String doctorID = "";
         String doctor = comboBoxDoctores.getSelectedItem().toString(); // Obtener el estado seleccionado
         String sqlBusqueda2 = "SELECT idDoctor FROM doctores WHERE nombre = ?"; // Usar un placeholder en la consulta
         try (PreparedStatement ps = con.prepareStatement(sqlBusqueda2)) {
-        ps.setString(1, doctor); // Establecer el valor del estado en la consulta
-        try (ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                doctorID = rs.getString("idDoctor"); // Obtener el idEstado si existe un resultado
-            } else {
-                System.out.println("No se encontró al doctor seleccionado."); // Mensaje si no hay coincidencia
+            ps.setString(1, doctor); // Establecer el valor del estado en la consulta
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    doctorID = rs.getString("idDoctor"); // Obtener el idEstado si existe un resultado
+                } else {
+                    System.out.println("No se encontró al doctor seleccionado."); // Mensaje si no hay coincidencia
+                }
             }
-        }
         } catch (SQLException e) {
-         JOptionPane.showMessageDialog(null, "Error recuperando al doctor: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error recuperando al doctor: " + e.getMessage());
         }
 
         String factID = comboBoxFacturas.getSelectedItem().toString();
@@ -294,23 +293,23 @@ private void llenarComboBox(String tabla, String valor, JComboBox combo) {
         conector();
         String sql = "INSERT INTO factdetalle (idFactura, idConcepto, cant, precioUnit, subtotalConcept,iva,totalConc, idDoctor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
-            
+
             double cantt = Double.parseDouble(cant.getText());
             double precioU = Double.parseDouble(preciounidad.getText());
             double subtotal = cantt * precioU;
             double ivaa = Double.parseDouble(iva.getText()) / 100;
             ivaa = subtotal * ivaa;
             double total = subtotal + ivaa;
-            
+
             // Establecer los valores de los parámetros de la consulta
-            preparedStatement.setString(1, factID); 
-            preparedStatement.setString(2, ConceptoID );
+            preparedStatement.setString(1, factID);
+            preparedStatement.setString(2, ConceptoID);
             preparedStatement.setDouble(3, cantt);
-            preparedStatement.setDouble(4, precioU); 
-            preparedStatement.setDouble(5, subtotal); 
-            preparedStatement.setDouble(6, ivaa); 
-            preparedStatement.setDouble(7, total); 
-            preparedStatement.setString(8, doctorID); 
+            preparedStatement.setDouble(4, precioU);
+            preparedStatement.setDouble(5, subtotal);
+            preparedStatement.setDouble(6, ivaa);
+            preparedStatement.setDouble(7, total);
+            preparedStatement.setString(8, doctorID);
 
             // Ejecutar la consulta de inserción
             int filasInsertadas = preparedStatement.executeUpdate();
@@ -324,18 +323,17 @@ private void llenarComboBox(String tabla, String valor, JComboBox combo) {
             }
         } catch (SQLException ex) {
             Logger.getLogger(POSTFACTDETALLE.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_RegistrarActionPerformed
 
     private void comboBoxFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxFacturasActionPerformed
-       
+
     }//GEN-LAST:event_comboBoxFacturasActionPerformed
 
     private void comboBoxDoctoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxDoctoresActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxDoctoresActionPerformed
 
- 
     /**
      * @param args the command line arguments
      */
